@@ -54,15 +54,14 @@ def generate_cleaned_column(df):
     return df
 
 
-df = load_data("input.txt")
-df = create_fingerprint(df)
-df = generate_cleaned_column(df)
-print(df)
-
 def save_data(df, output_file):
     """Guarda el DataFrame en un archivo"""
     # Solo contiene una columna llamada 'texto' al igual
     # que en el archivo original pero con los datos limpios
+    df = df.copy()
+    df = df[["cleaned"]]
+    df = df.rename(columns = {"cleaned": "text"})
+    df.to_csv(output_file, index=False)
 
 
 def main(input_file, output_file):
@@ -75,8 +74,8 @@ def main(input_file, output_file):
     save_data(df, output_file)
 
 
-# if __name__ == "__main__":
-#     main(
-#         input_file="input.txt",
-#         output_file="output.txt",
-#     )
+if __name__ == "__main__":
+    main(
+        input_file="input.txt",
+        output_file="output.txt",
+    )
