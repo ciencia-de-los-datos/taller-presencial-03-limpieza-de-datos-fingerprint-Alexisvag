@@ -48,8 +48,10 @@ def generate_cleaned_column(df):
     # 4. Cree la columna 'cleaned' usando el diccionario
     df = df.sort_values(by=["key", "text"], ascending=[True, True])
     keys = df.drop_duplicates(subset="key", keep="first")
+    key_dict = dict(zip(keys["key"], keys["text"]))
+    df["cleaned"] = df["key"].map(key_dict)
 
-    return keys
+    return df
 
 
 df = load_data("input.txt")
