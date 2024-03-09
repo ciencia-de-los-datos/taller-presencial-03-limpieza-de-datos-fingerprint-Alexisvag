@@ -19,7 +19,7 @@ assert test.loc[12, "key"] == "airlin compani"
 assert test.loc[16, "key"] == "analyt applic"
 assert test.loc[25, "key"] == "analyt model"
 
-#
+
 # Retorna error si la carpeta output/ no existe
 if not os.path.exists("output.txt"):
     raise FileNotFoundError("File 'output.txt' not found")
